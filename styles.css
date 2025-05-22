@@ -4,11 +4,11 @@
     align-items: center;
     justify-content: center;
     text-align: center;
-}
-
-#take-quiz {
+  }
+  
+  #take-quiz {
     margin-top: 20px;
     padding: 10px 20px;
     font-size: 15px;
-    cursor: pointer;
-}
+    cursor:pointer;
+  }

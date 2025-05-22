@@ -13,6 +13,11 @@
     cursor: pointer;
 }
 
+#take-quiz a {
+    text-decoration: none;
+    color: black;
+}
+
 body {
     background-color: lemonchiffon;
     /* idk, prob gonna change color later */

@@ -22,3 +22,10 @@ body {
     background-color: lemonchiffon;
     /* idk, prob gonna change color later */
 }
+
+/* center the instructions */
+
+#quiz ul {
+    text-align: center;
+    padding: 20px;
+}

@@ -2,26 +2,29 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Country Flag Quiz</title>
-    <link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Flag Quiz Test</title>
+<link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
-    <div class="button">
-        <h1 id="welcome-h1">Welcome to the Countries Flags Quiz!</h1>
-        <p id="welcome-p"> Can you guess the country from the given flag?</p>
-        <button id="take-quiz"><a href="#quiz">Take quiz</a></button>
+
+    <!-- welcome Screen -->
+    <div id="welcome" class="active">
+        <h1>Welcome to the Countries Flags Quiz!</h1>
+        <p>Can you guess the country from the given flag?</p>
+        <p>There will be a text box below the flag where you will type the name of the country you think that flag is from</p>
+        <p>Good luck!</p>
+        <button onclick="startQuiz()">Take Quiz</button>
     </div>
 
-    <div id="quiz">
-        <ul>You will be given a flag.</ul>
-        <ul>There will be a text-box below the flag where you will type the name of the country you think that flag is from.</ul>
-        <ul>Good Luck!</ul>
+    <!-- question Screen -->
+    <div id="question" class="screen">
+        <h2>Which country does this flag belong to?</h2>
     </div>
 
-    <div class="question"></div>
+<script src="script.js"></script>
 
 </body>
 

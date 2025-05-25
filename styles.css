@@ -1,31 +1,17 @@
-.button {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-}
-
-#take-quiz {
-    margin-top: 20px;
-    padding: 10px 20px;
-    font-size: 15px;
-    cursor: pointer;
-}
-
-#take-quiz a {
-    text-decoration: none;
-    color: black;
-}
-
 body {
-    background-color: lemonchiffon;
-    /* idk, prob gonna change color later */
-}
-
-/* center the instructions */
-
-#quiz ul {
     text-align: center;
-    padding: 20px;
-}
+    margin-top: 50px;
+  }
+  .screen {
+    display: none;
+  }
+  .active {
+    display: block;
+  }
+
+  button {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+ 

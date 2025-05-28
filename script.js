@@ -6,3 +6,4 @@ function startQuiz() {
 
     document.getElementById("question").classList.add("active");
 }
+

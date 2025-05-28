@@ -5,7 +5,6 @@ function startQuiz() {
 
     document.getElementById("question").classList.add("active");
 
-<<<<<<< HEAD
     // flag setup
     const countries = {
         "Armenia": "armenia",
@@ -21,10 +20,8 @@ function startQuiz() {
     document.getElementById("flag").src = flagUrl;
     document.getElementById("flag").alt = `${country} Flag`;
 }
-=======
+
 // switch questions
 function nextQue() {
     
 }
-
->>>>>>> 3039945b5478caa43a706864dbb49e09fd730394

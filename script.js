@@ -7,3 +7,8 @@ function startQuiz() {
     document.getElementById("question").classList.add("active");
 }
 
+// switch questions
+function nextQue() {
+    
+}
+

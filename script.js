@@ -23,9 +23,5 @@ function startQuiz() {
 
 // switch questions
 function nextQue() {
-<<<<<<< HEAD
 
-=======
-    
->>>>>>> c6427b8e7dadef43e119ca31598cb7541efc733b
 }

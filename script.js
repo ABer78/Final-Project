@@ -9,15 +9,18 @@ const countries = {
 }
 
 let quizOrder = Object.keys(countries)
-let currentIndex = 0
+let currentIndex = 0 
 let score = 0
+
+ document.getElementById("final").style.display = "none"
 
 function startQuiz() {
     document.getElementById("welcome").style.display = "none";
     document.getElementById("question").style.display = "block";
 
+
     // shuffle the quiz order
-    quizOrder = quizOrder.sort(() => Math.random() - 0.5);
+    quizOrder = quizOrder.sort(() => Math.random() - 0.5)
 
     currentIndex = 0;
     score = 0;
@@ -38,7 +41,7 @@ function showQuestion() {
     document.getElementById("answer").disabled = false;
 
     document.getElementById("nextbtn").style.display = "none"
-    document.getElementById("checkbtn").style.display = "inline-block"
+    document.getElementById("checkbtn").style.display = "block"
 }
 
 function submitAnswer() {
@@ -67,7 +70,7 @@ function nextQue() {
 
 function showFinalScore() {
     document.getElementById("question").innerHTML = `
-        <h2>Quiz Finished!</h2>
-        <p>You scored ${score} out of ${quizOrder.length}.</p>
-    `
+       <p>You scored ${score} out of ${quizOrder.length}.</p>`
+       document.getElementById("question").style.display = "none";
+       document.getElementById("final").style.display = "block";   
 }

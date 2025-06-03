@@ -71,4 +71,3 @@ function showFinalScore() {
         <p>You scored ${score} out of ${quizOrder.length}.</p>
     `
 }
-

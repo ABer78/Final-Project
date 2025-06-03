@@ -69,8 +69,7 @@ function nextQue() {
 }
 
 function showFinalScore() {
-    document.getElementById("question").innerHTML = `
-       <p>You scored ${score} out of ${quizOrder.length}.</p>`
+    document.getElementById("final-score").textContent = `You scored ${score} out of ${quizOrder.length}`
        document.getElementById("question").style.display = "none";
        document.getElementById("final").style.display = "block";   
 }

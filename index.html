@@ -18,13 +18,15 @@
             from</p>
         <p>Good luck!</p>
         <button onclick="startQuiz()">Take Quiz</button>
+        <button onclick="resumeQuiz()">Resume Quiz</button>
     </div>
 
     <!-- question Screen -->
     <div id="question" class="screen">
         <h2>Which country does this flag belong to?</h2>
         <img id="flag" alt="Flag" src="">
-        <input type="text" id="answer">
+        <p id="flag-label">Name of Country Flag</p> 
+        <input type="text" id="answer" placeholder="Enter country name">
         <button onclick="submitAnswer()" id="checkbtn">Submit</button>
         <button onclick="nextQue()" id="nextbtn">Next</button>
     </div>

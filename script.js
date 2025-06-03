@@ -1,3 +1,5 @@
+// log of answers
+let answersLog = []
 
 // country list
 const countries = {
@@ -9,67 +11,141 @@ const countries = {
 }
 
 let quizOrder = Object.keys(countries)
-let currentIndex = 0 
+let currentIndex = 0
 let score = 0
 
- document.getElementById("final").style.display = "none"
+
+document.getElementById("final").style.display = "none"
+
+// show resume button if there is saved data
+if (localStorage.getItem("flagQuizAnswers")) {
+    document.querySelector('button[onclick="resumeQuiz()"]').style.display = "inline-block";
+} else {
+    document.querySelector(`'button[onclick="resumeQuiz()"]'`).style.display = "none"
+}
 
 function startQuiz() {
     document.getElementById("welcome").style.display = "none";
     document.getElementById("question").style.display = "block";
 
-
     // shuffle the quiz order
     quizOrder = quizOrder.sort(() => Math.random() - 0.5)
 
-    currentIndex = 0;
-    score = 0;
-    showQuestion();
+    currentIndex = 0
+    score = 0
+    answersLog = []
+
+    saveProgress()
+    showQuestion()
 
     document.getElementById("nextbtn").style.display = "none";
     document.getElementById("checkbtn").style.display = "inline-block";
 }
 
+function resumeQuiz() {
+    const savedAnswers = JSON.parse(localStorage.getItem("flagQuizAnswers"));
+    const savedOrder = JSON.parse(localStorage.getItem("quizOrder"));
+    const savedIndex = JSON.parse(localStorage.getItem("currentIndex"));
+    const savedScore = JSON.parse(localStorage.getItem("score"));
+
+    if (savedAnswers && savedOrder && savedIndex !== null && savedScore !== null) {
+        answersLog = savedAnswers
+        quizOrder = savedOrder
+        currentIndex = savedIndex
+        score = savedScore
+
+        document.getElementById("welcome").style.display = "none";
+        document.getElementById("question").style.display = "block";
+
+        showQuestion()
+
+        document.getElementById("nextbtn").style.display = "none";
+        document.getElementById("checkbtn").style.display = "inline-block";
+    }
+}
+
 function showQuestion() {
     const country = quizOrder[currentIndex];
+    const correctAnswer = country.toLowerCase();
     const flagUrl = `https://cdn.countryflags.com/thumbs/${countries[country]}/flag-800.png`;
 
-    document.getElementById("flag").src = flagUrl
-    document.getElementById("flag").alt = country + " Flag"
+    document.getElementById("flag").src = flagUrl;
+    document.getElementById("flag").alt = country + " Flag";
 
-    document.getElementById("answer").value = ""
-    document.getElementById("answer").disabled = false;
+    // Check if the current question has already been answered
+    const previous = answersLog.find(entry => entry.country === correctAnswer);
 
-    document.getElementById("nextbtn").style.display = "none"
-    document.getElementById("checkbtn").style.display = "block"
+    const answerInput = document.getElementById("answer");
+    const label = document.getElementById("flag-label");
+
+    if (previous) {
+        // Already answered — show what they entered
+        answerInput.value = previous.userAnswer;
+        answerInput.disabled = true;
+        label.textContent = previous.userAnswer || "[No answer entered]";
+        document.getElementById("checkbtn").style.display = "none";
+        document.getElementById("nextbtn").style.display = "inline-block";
+    } else {
+        // Not answered yet — clean input
+        answerInput.value = "";
+        answerInput.disabled = false;
+        label.textContent = "Name of Country Flag";
+        document.getElementById("checkbtn").style.display = "inline-block";
+        document.getElementById("nextbtn").style.display = "none";
+    }
 }
 
 function submitAnswer() {
-    const answer = document.getElementById("answer").value.trim().toLowerCase()
-    const correctAnswer = quizOrder[currentIndex].toLowerCase()
+    const answerInput = document.getElementById("answer");
+    const answer = answerInput.value.trim().toLowerCase();
+    const correctAnswer = quizOrder[currentIndex].toLowerCase();
 
-    document.getElementById("answer").disabled = true
+    answerInput.disabled = true;
 
     if (answer === correctAnswer) {
-        score++
+        score++;
     }
 
-    document.getElementById("checkbtn").style.display = "none"
-    document.getElementById("nextbtn").style.display = "inline-block"
+    //push answer to answer log
+    answersLog.push({
+        country: correctAnswer,
+        userAnswer: answer || "[No answer entered]"
+    });
+
+    saveProgress();
+
+    document.getElementById("flag-label").textContent = answer || "[No answer entered]";
+    document.getElementById("checkbtn").style.display = "none";
+    document.getElementById("nextbtn").style.display = "inline-block";
 }
 
 function nextQue() {
-    currentIndex++
+    currentIndex++;
+
+    saveProgress();
 
     if (currentIndex < quizOrder.length) {
-        showQuestion()
+        showQuestion();
     } else {
-        showFinalScore()
+        showFinalScore();
     }
 }
 
 function showFinalScore() {
-    document.getElementById("final-score").textContent = `You scored ${score} out of ${quizOrder.length}`
-       document.getElementById("question").style.display = "none";
-       document.getElementById("final").style.display = "block";   
+    document.getElementById("final-score").textContent = `You scored ${score} out of ${quizOrder.length}`;
+    document.getElementById("question").style.display = "none";
+    document.getElementById("final").style.display = "block";
+
+    // Clear saved progress since quiz ended
+    localStorage.removeItem("flagQuizAnswers");
+    localStorage.removeItem("quizOrder");
+    localStorage.removeItem("currentIndex");
+    localStorage.removeItem("score");
+}
+
+function saveProgress() {
+    localStorage.setItem("flagQuizAnswers", JSON.stringify(answersLog));
+    localStorage.setItem("quizOrder", JSON.stringify(quizOrder));
+    localStorage.setItem("currentIndex", JSON.stringify(currentIndex));
+    localStorage.setItem("score", JSON.stringify(score));
 }

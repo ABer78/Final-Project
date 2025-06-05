@@ -18,7 +18,7 @@
             from</p>
         <p>Good luck!</p>
         <button onclick="startQuiz()">Take Quiz</button>
-        <button onclick="resumeQuiz()">Resume Quiz</button>
+        <button onclick="resumeQuiz()" id="resumeBtn">Resume Quiz</button>
     </div>
 
     <!-- question Screen -->
@@ -29,12 +29,14 @@
         <input type="text" id="answer" placeholder="Enter country name">
         <button onclick="submitAnswer()" id="checkbtn">Submit</button>
         <button onclick="nextQue()" id="nextbtn">Next</button>
+        <button onclick="prevque()" id="prevbtn">Previous</button>
     </div>
 
     <!-- final screen with score -->
     <div id="final" class="active">
         <h2>Quiz Finished!</h2>
        <p id="final-score"></p>
+       <button id="retakequiz">Retake quiz?</button>
     </div>
 
     <script src="script.js"></script>

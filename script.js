@@ -18,10 +18,12 @@ let score = 0
 document.getElementById("final").style.display = "none"
 
 // show resume button if there is saved data
+const resumeBtn = document.getElementById("resumeBtn");
+
 if (localStorage.getItem("flagQuizAnswers")) {
-    document.querySelector('button[onclick="resumeQuiz()"]').style.display = "inline-block";
+    resumeBtn.style.display = "inline-block";
 } else {
-    document.querySelector(`'button[onclick="resumeQuiz()"]'`).style.display = "none"
+    resumeBtn.style.display = "none";
 }
 
 function startQuiz() {
@@ -93,6 +95,12 @@ function showQuestion() {
         document.getElementById("checkbtn").style.display = "inline-block";
         document.getElementById("nextbtn").style.display = "none";
     }
+
+    if (currentIndex > 0) {
+        document.getElementById("prevbtn").style.display = "inline-block";
+    } else {
+        document.getElementById("prevbtn").style.display = "none";
+    }
 }
 
 function submitAnswer() {
@@ -148,4 +156,12 @@ function saveProgress() {
     localStorage.setItem("quizOrder", JSON.stringify(quizOrder));
     localStorage.setItem("currentIndex", JSON.stringify(currentIndex));
     localStorage.setItem("score", JSON.stringify(score));
+}
+
+// previous button functionality
+function prevque() {
+    if (currentIndex > 0) {
+        currentIndex--;
+        showQuestion();
+    }
 }

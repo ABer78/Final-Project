@@ -30,6 +30,21 @@ function startQuiz() {
     document.getElementById("welcome").style.display = "none";
     document.getElementById("question").style.display = "block";
 
+
+    // get difficulty
+    const difficulty = document.getElementById("difficulty").value;
+
+    // quizOrder based on difficulty
+    let allCountries = Object.keys(countries).sort(() => Math.random() - 0.5);
+
+    if (difficulty === "easy") {
+        quizOrder = allCountries.slice(0, 3);
+    } else if (difficulty === "medium") {
+        quizOrder = allCountries.slice(0, 5);
+    } else {
+        quizOrder = allCountries;
+    }
+
     // shuffle the quiz order
     quizOrder = quizOrder.sort(() => Math.random() - 0.5)
 

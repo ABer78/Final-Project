@@ -17,6 +17,11 @@
         <p>There will be a text box below the flag where you will type the name of the country you think that flag is
             from</p>
         <p>Good luck!</p>
+        <select id="difficulty">
+            <option value="easy">Easy (3 flags)</option>
+            <option value="medium" selected>Medium (5 flags)</option>
+            <option value="hard">Hard (All flags)</option>
+        </select>
         <button onclick="startQuiz()">Take Quiz</button>
         <button onclick="resumeQuiz()" id="resumeBtn">Resume Quiz</button>
     </div>
@@ -25,7 +30,7 @@
     <div id="question" class="screen">
         <h2>Which country does this flag belong to?</h2>
         <img id="flag" alt="Flag" src="">
-        <p id="flag-label">Name of Country Flag</p> 
+        <p id="flag-label">Name of Country Flag</p>
         <input type="text" id="answer" placeholder="Enter country name">
         <button onclick="submitAnswer()" id="checkbtn">Submit</button>
         <button onclick="nextQue()" id="nextbtn">Next</button>
@@ -35,8 +40,8 @@
     <!-- final screen with score -->
     <div id="final" class="active">
         <h2>Quiz Finished!</h2>
-       <p id="final-score"></p>
-       <button id="retakequiz">Retake quiz?</button>
+        <p id="final-score"></p>
+        <button id="retakequiz">Retake quiz?</button>
     </div>
 
     <script src="script.js"></script>

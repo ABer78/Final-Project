@@ -165,3 +165,31 @@ function prevque() {
         showQuestion();
     }
 }
+
+// retake quiz
+
+document.getElementById("retakequiz").addEventListener("click", () => {
+    // Clear saved data
+    localStorage.removeItem("flagQuizAnswers");
+    localStorage.removeItem("quizOrder");
+    localStorage.removeItem("currentIndex");
+    localStorage.removeItem("score");
+
+    // reset all values and randomize order
+    answersLog = []
+    score = 0
+    currentIndex = 0
+    quizOrder = Object.keys(countries)
+
+    // reset the screens
+    document.getElementById("final").style.display = "none"
+    document.getElementById("question").style.display = "none"
+    document.getElementById("welcome").style.display = "block"
+
+    // seeing if resume button would show
+    if (localStorage.getItem("flagQuizAnswers")) {
+        document.getElementById("resumeBtn").style.display = "block"
+    } else {
+        document.getElementById("resumeBtn").style.display = "none"
+    }
+})

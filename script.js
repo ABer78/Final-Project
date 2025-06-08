@@ -89,14 +89,14 @@ function showQuestion() {
     document.getElementById("flag").src = flagUrl;
     document.getElementById("flag").alt = country + " Flag";
 
-    // Check if the current question has already been answered
+    // check if the current question has already been answered
     const previous = answersLog.find(entry => entry.country === correctAnswer);
 
     const answerInput = document.getElementById("answer");
     const label = document.getElementById("flag-label");
 
     if (previous) {
-        // Already answered — show what they entered
+        // already answered — show what they entered
         answerInput.value = previous.userAnswer;
         answerInput.disabled = true;
         label.textContent = previous.userAnswer || "[No answer entered]";

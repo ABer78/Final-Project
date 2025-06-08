@@ -208,3 +208,5 @@ document.getElementById("retakequiz").addEventListener("click", () => {
         document.getElementById("resumeBtn").style.display = "none"
     }
 })
+
+// add more countries, improve css, and put correct answers in the log

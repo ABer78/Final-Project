@@ -3,27 +3,44 @@ let answersLog = []
 
 // country list
 const countries = {
+    "Afghanistan": "afghanistan",
+    "Albania": "albania",
+    "Algeria": "algeria",
+    "Andorra": "andorra",
+    "Angola": "angola",
+    "Antigua and Barbuda": "antigua" || "barbuda",
+    "Argentina": "argentina",
     "Armenia": "armenia",
+    "Australia": "australia",
+    "Austria": "austria",
+    "Azerbaijan": "azerbaijan",
+    "Bahamas": "bahamas",
+    "Bahrain": "bahrain",
+    "Bangaldesh": "bangladesh",
+    "Barbados": "barbados",
+    "Belarus": "belarus",
+    "": "",
+    "": "",
+    "": "",
+    "": "",
+    "": "",
+    "Brazil": "brazil",
+    "Chad": "chad",
+    "China": "china",
     "United States of America": "united-states-of-america",
     "India": "india",
-    "Austria": "austria",
     "Canada": "canada",
-    "Brazil": "brazil",
     "Japan": "japan",
     "Portugal": "portugal",
     "Spain": "spain",
-    "Vietnam": "vietnam",
     "Germany": "germany",
     "Mongolia": "mongolia",
     "South Sudan": "south-sudan",
-    "Chad": "chad",
     "South Africa": "south-africa",
     "Rwanda": "rwanda",
     "Iran": "iran",
-    "China": "china",
     "Finland": "finland",
-    "Angola": "angola",
-    "Azerbaijan": "azerbaijan"
+    "Vietnam": "vietnam",
 }
 
 let quizOrder = Object.keys(countries)
@@ -46,6 +63,7 @@ function startQuiz() {
     document.getElementById("welcome").style.display = "none";
     document.getElementById("question").style.display = "block";
 
+    localStorage.removeItem("answersLog");
 
     // get difficulty
     const difficulty = document.getElementById("difficulty").value;
@@ -135,9 +153,15 @@ function showQuestion() {
 }
 
 function submitAnswer() {
-    const answerInput = document.getElementById("answer");
-    const answer = answerInput.value.trim().toLowerCase();
-    const correctAnswer = quizOrder[currentIndex].toLowerCase();
+
+    const answerInput = document.getElementById("answer")
+    const answer = answerInput.value.trim().toLowerCase()
+    const correctAnswer = quizOrder[currentIndex].toLowerCase()
+
+
+    let log = JSON.parse(localStorage.getItem("answersLog")) || []
+    log.push(answerInput)
+    localStorage.setItem("answersLog", JSON.stringify(log))
 
     answerInput.disabled = true;
 
@@ -192,8 +216,8 @@ function saveProgress() {
 // previous button functionality
 function prevque() {
     if (currentIndex > 0) {
-        currentIndex--;
-        showQuestion();
+        currentIndex--
+        showQuestion()
     }
 }
 
@@ -201,10 +225,10 @@ function prevque() {
 
 document.getElementById("retakequiz").addEventListener("click", () => {
     // Clear saved data
-    localStorage.removeItem("flagQuizAnswers");
-    localStorage.removeItem("quizOrder");
-    localStorage.removeItem("currentIndex");
-    localStorage.removeItem("score");
+    localStorage.removeItem("flagQuizAnswers")
+    localStorage.removeItem("quizOrder")
+    localStorage.removeItem("currentIndex")
+    localStorage.removeItem("score")
 
     // reset all values and randomize order
     answersLog = []
@@ -225,6 +249,70 @@ document.getElementById("retakequiz").addEventListener("click", () => {
     }
 })
 
+<<<<<<< HEAD
 // add more countries, improve css, and put correct answers in the log
 
 // change it so it doesnt switch every answer to lowercase
+=======
+
+function reviewAnswers() {
+    document.getElementById("final").classList.remove("active")
+    document.getElementById("review").classList.add("active")
+
+    const reviewList = document.getElementById("reviewList")
+    reviewList.innerHTML = ""
+
+    const log = JSON.parse(localStorage.getItem("answersLog"))
+
+    if (!log || log.length === 0) {
+        reviewList.innerHTML = "<p>No answers to review.</p>"
+        return
+    }
+
+    log.forEach(answer => {
+        const correct = countries[answer.country];
+        const isCorrect = answer.userAnswer === correct;
+
+        const item = document.createElement("div");
+        item.innerHTML = `
+            <p><strong>${answer.country}</strong></p>
+            <p>Your answer: ${answer.userAnswer} ${isCorrect ? "✅" : "❌"}</p>
+            ${!isCorrect ? `<p>Correct answer: ${correct}</p>` : ""}
+            <hr>
+        `
+        reviewList.appendChild(item)
+    })
+}
+
+document.getElementById("reviewbtn").addEventListener("click", () => {
+    // Hide final screen and show review screen
+    document.getElementById("final").style.display = "none"
+    document.getElementById("review").style.display = "block"
+
+    const reviewList = document.getElementById("reviewList")
+    reviewList.innerHTML = ""; // Clear previous content
+
+    const storedAnswers = JSON.parse(localStorage.getItem("flagQuizAnswers")) || answersLog
+    const storedOrder = JSON.parse(localStorage.getItem("quizOrder")) || quizOrder
+
+    // review list
+    storedOrder.forEach((country) => {
+        const correct = country.toLowerCase()
+        const answerEntry = storedAnswers.find(entry => entry.country === correct)
+
+        const div = document.createElement("div")
+        div.innerHTML = `
+            <strong>Flag:</strong> ${country}<br>
+            <strong>Your Answer:</strong> ${answerEntry?.userAnswer || "[No answer]"}<br>
+            <strong>Correct Answer:</strong> ${correct}<br><br>
+        `
+        reviewList.appendChild(div)
+    })
+})
+
+
+
+
+
+// add more countries, improve css, and put correct answers in the log
+>>>>>>> 1a72074f115d900d9c49ef317875deee3f668629

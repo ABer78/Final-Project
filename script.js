@@ -7,7 +7,23 @@ const countries = {
     "United States of America": "united-states-of-america",
     "India": "india",
     "Austria": "austria",
-    "Canada": "canada"
+    "Canada": "canada",
+    "Brazil": "brazil",
+    "Japan": "japan",
+    "Portugal": "portugal",
+    "Spain": "spain",
+    "Vietnam": "vietnam",
+    "Germany": "germany",
+    "Mongolia": "mongolia",
+    "South Sudan": "south-sudan",
+    "Chad": "chad",
+    "South Africa": "south-africa",
+    "Rwanda": "rwanda",
+    "Iran": "iran",
+    "China": "china",
+    "Finland": "finland",
+    "Angola": "angola",
+    "Azerbaijan": "azerbaijan"
 }
 
 let quizOrder = Object.keys(countries)

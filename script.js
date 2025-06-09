@@ -237,6 +237,7 @@ document.getElementById("retakequiz").addEventListener("click", () => {
     quizOrder = Object.keys(countries)
 
     // reset the screens
+    document.getElementById("review").style.display = "none"
     document.getElementById("final").style.display = "none"
     document.getElementById("question").style.display = "none"
     document.getElementById("welcome").style.display = "block"
@@ -249,11 +250,10 @@ document.getElementById("retakequiz").addEventListener("click", () => {
     }
 })
 
-<<<<<<< HEAD
 // add more countries, improve css, and put correct answers in the log
 
 // change it so it doesnt switch every answer to lowercase
-=======
+
 
 function reviewAnswers() {
     document.getElementById("final").classList.remove("active")
@@ -315,4 +315,3 @@ document.getElementById("reviewbtn").addEventListener("click", () => {
 
 
 // add more countries, improve css, and put correct answers in the log
->>>>>>> 1a72074f115d900d9c49ef317875deee3f668629

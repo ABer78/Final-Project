@@ -226,3 +226,5 @@ document.getElementById("retakequiz").addEventListener("click", () => {
 })
 
 // add more countries, improve css, and put correct answers in the log
+
+// change it so it doesnt switch every answer to lowercase

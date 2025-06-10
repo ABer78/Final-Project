@@ -234,9 +234,9 @@ function startQuiz() {
     let allCountries = Object.keys(countries).sort(() => Math.random() - 0.5)
 
     if (difficulty === "easy") {
-        quizOrder = allCountries.slice(0, 3)
-    } else if (difficulty === "medium") {
         quizOrder = allCountries.slice(0, 5)
+    } else if (difficulty === "medium") {
+        quizOrder = allCountries.slice(0, 25)
     } else {
         quizOrder = allCountries
     }

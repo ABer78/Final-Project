@@ -69,7 +69,6 @@ const countries = {
     "Equatorial Guinea": "equatorial-guinea",
     "Eritrea": "eritrea",
     "Estonia": "estonia",
-    "Eswatini": "eswatini",
     "Ethiopia": "ethiopia",
     "Fiji": "fiji",
     "France": "france",
@@ -172,7 +171,6 @@ const countries = {
     "Tajikistan": "tajikistan",
     "Tanzania": "tanzania",
     "Thailand": "thailand",
-    "Timor-Leste": "timor-leste",
     "Togo": "togo",
     "Tonga": "tonga",
     "Trinidad and Tobago": "trinidad-and-tobago",
@@ -440,6 +438,8 @@ function reviewAnswers() {
 
     const log = JSON.parse(localStorage.getItem("answersLog"))
 
+
+    //checks if log is empty
     if (!log || log.length === 0) {
         reviewList.innerHTML = "<p>No answers to review.</p>"
         return

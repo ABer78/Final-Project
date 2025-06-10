@@ -193,17 +193,18 @@ const countries = {
     "Zimbabwe": "zimbabwe"
 }
 
-
+// to show which question the user is on
 function updateProgress() {
     const progressElement = document.getElementById("progress")
     progressElement.textContent = `Question ${currentIndex + 1} / ${quizOrder.length}`
   }
 
-
+//loads flag quicker
 function preloadFlag(countryCode) {
     const img = new Image()
     img.src = `https://cdn.countryflags.com/thumbs/${countryCode}/flag-800.png`
 }
+
 
 let quizOrder = Object.keys(countries)
 let currentIndex = 0
@@ -221,6 +222,8 @@ if (localStorage.getItem("flagQuizAnswers")) {
     resumeBtn.style.display = "none"
 }
 
+
+// starts quiz
 function startQuiz() {
     document.getElementById("welcome").style.display = "none"
     document.getElementById("question").style.display = "block"
@@ -255,7 +258,9 @@ function startQuiz() {
     document.getElementById("checkbtn").style.display = "inline-block"
 }
 
+// resume quiz 
 function resumeQuiz() {
+    // to get the user's answers, quizOrder, index, and score
     const savedAnswers = JSON.parse(localStorage.getItem("flagQuizAnswers"))
     const savedOrder = JSON.parse(localStorage.getItem("quizOrder"))
     const savedIndex = JSON.parse(localStorage.getItem("currentIndex"))
@@ -277,6 +282,7 @@ function resumeQuiz() {
     }
 }
 
+// to load question and flag
 function showQuestion() {
     const country = quizOrder[currentIndex]
     const correctAnswer = country.toLowerCase()
@@ -299,7 +305,7 @@ function showQuestion() {
         document.getElementById("checkbtn").style.display = "none"
         document.getElementById("nextbtn").style.display = "inline-block"
     } else {
-        // Not answered yet — clean input
+        // not answered yet 
         answerInput.value = ""
         answerInput.disabled = false
         label.textContent = "Name of Country Flag"
@@ -349,6 +355,7 @@ function submitAnswer() {
     document.getElementById("nextbtn").style.display = "inline-block"
 }
 
+// to go to next question
 function nextQue() {
     currentIndex++
 
@@ -356,18 +363,20 @@ function nextQue() {
 
     if (currentIndex < quizOrder.length) {
         showQuestion()
+        // if the max amount of question is reached
     } else {
         showFinalScore()
     }
 
 }
 
+
 function showFinalScore() {
     document.getElementById("final-score").textContent = `You scored ${score} out of ${quizOrder.length}`
     document.getElementById("question").style.display = "none"
     document.getElementById("final").style.display = "block"
 
-    // Clear saved progress since quiz ended
+    // clear saved progress since quiz ended
     localStorage.removeItem("flagQuizAnswers")
     localStorage.removeItem("quizOrder")
     localStorage.removeItem("currentIndex")
@@ -419,9 +428,7 @@ document.querySelectorAll(".retakequiz").forEach(btn => {
         }
     })
 })
-// add more countries, improve css, and put correct answers in the log
 
-// change it so it doesnt switch every answer to lowercase
 
 
 function reviewAnswers() {
